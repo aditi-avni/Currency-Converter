@@ -29,7 +29,7 @@ const updateExchangeRate = async () => {
 for(let select of dropdowns){ //for of loop is used to iterate over the dropdowns
     for(let currCode in countryList){ 
         let newOption = document.createElement("option"); 
-        newOption.innerText = currCode;
+        newOption.innerText = `${countryList[currCode].countryName} (${currCode})`;
         newOption.value = currCode; 
         if(select.name === "from" && currCode === "USD"){ //if the name of the select is "from" and the current code is "USD", then the option will be selected by default
             newOption.selected = "selected";
@@ -47,7 +47,7 @@ for(let select of dropdowns){ //for of loop is used to iterate over the dropdown
 
 const updateFlag = (element) => {
     let currcode = element.value;
-    let countryCode = countryList[currcode];
+    let countryCode = countryList[currcode].countryCode;
     let newSrc = `https://flagsapi.com/${countryCode}/flat/64.png`;
     let img = element.parentElement.querySelector("img");
     img.src = newSrc ;
